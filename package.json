@@ -1,0 +1,70 @@
+{
+	"name": "structlog-view",
+	"description": "Structlog View - A Python Structlog viewer",
+	"version": "0.0.1",
+	"publisher": "aaron-bassett",
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:structlog.start",
+		"onWebviewPanel:structlog"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aaronbassett/vscode-structlog-view.git"
+	},
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "structlog.start",
+				"title": "Start Structlog Viewer",
+				"category": "Logging"
+			}
+		],
+		"configuration": {
+			"title": "Structlog View",
+			"properties": {
+				"structlog.logWebSocketUrl": {
+					"type": [
+						"string",
+						null
+					],
+					"default": null,
+					"description": "Log WebSocket Server URL"
+				},
+				"structlog.logstype": {
+					"type": "string",
+					"default": "user",
+					"enum": [
+						"user",
+						"access",
+						"cpu"
+					],
+					"enumDescriptions": [
+						"View User Actions logs",
+						"View HTTP Access logs",
+						"View server CPU load"
+					]
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "tslint -p ./",
+		"watch": "tsc -w -p ./"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@types/node": "^12.12.0",
+		"tslint": "^5.19.0",
+		"typescript": "^3.8.3",
+		"@types/vscode": "^1.38.0"
+	}
+}
